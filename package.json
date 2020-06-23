@@ -1,0 +1,25 @@
+{
+  "name": "cpaweb-node-vue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:fontend":"cd fontend && npm run serve",
+    "start:backend":"cd backend && npm start",
+    "start": "concurrently \"command1 arg\" \"command2 arg\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/taozeroxii/cpaweb-node-vue.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/taozeroxii/cpaweb-node-vue/issues"
+  },
+  "homepage": "https://github.com/taozeroxii/cpaweb-node-vue#readme",
+  "dependencies": {
+    "concurrently": "^5.2.0"
+  }
+}
