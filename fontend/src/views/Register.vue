@@ -33,7 +33,7 @@
 
           <div class="form-group">
             <input type="text" name="username" 
-            v-validate="'required'" 
+            v-validate="{ required: true, regex:/^[A-Za-z0-9]{3,15}$/ }" 
             v-model.trim="form.username"
             :class="{'is-invalid' :errors.has('username') }"
             class="form-control" placeholder="ชื่อเข้าใช้งาน (username)" />
@@ -42,7 +42,7 @@
 
           <div class="form-group">
                <input type="password" name="password" 
-                v-validate="'required'" 
+                v-validate="{ required: true, regex:/^[A-Za-z0-9]{4,15}$/ }" 
                 v-model.trim="form.password" 
                 :class="{'is-invalid' :errors.has('password') }"
                 class="form-control" placeholder="รหัสผ่าน" />
@@ -57,6 +57,7 @@
                 class="form-control" placeholder="ยืนยันรหัสผ่าน" />
              <span class="invalid-feedback">{{errors.first('confirmpassword')}}</span>
           </div>
+
           <button type="submit" class="btn btn-primary ">ยืนยัน</button>
         </form>
       </div>
@@ -65,6 +66,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 export default {
     data(){
         return{
@@ -79,7 +81,14 @@ export default {
     methods:{
         //บันทึกข้อมูลการลงทะเบียน
         onSubmit(){
-            console.log(this.form)
+            this.$validator.validateAll().then(async valid=>{
+             //console.log(valid);//เช็คว่าค่าที่กรอกครบหรือไม่
+              if(!valid) return
+              try{   
+                  const response = await axios.post('api/account/register')
+              }
+              catch(ex){console.log(ex)}
+            });
         }
     }
 }

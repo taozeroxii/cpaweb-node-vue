@@ -12,6 +12,7 @@ Vue.config.productionTip = false;
 Vue.prototype.jquery = jquery;
 Vue.use(VeeValidate);
 
+
 new Vue({
   router,
   store,
