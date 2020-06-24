@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start:fontend":"cd fontend && npm run serve",
-    "start:backend":"cd backend && npm start",
+    "start:fontend": "cd fontend && npm run serve",
+    "start:backend": "cd backend && npm start",
     "start": "concurrently \"command1 arg\" \"command2 arg\""
   },
   "repository": {
