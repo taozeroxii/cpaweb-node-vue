@@ -5,8 +5,8 @@ const {authenticated} = require('../configs/security')
 
 //registerpage
 router.post('/register', [
-    check('username', 'กรุณากรอกข้อมูล Username').not().isEmpty(),
-    check('password','กรุณากรอกข้อมูล password').not().isEmpty(),
+    check('username', 'มีอยู่แล้วในระบบ').not().isEmpty(),
+    check('password').not().isEmpty(),
     check('fname').not().isEmpty(),
     check('lname').not().isEmpty()
 ], async (req, res) => {
