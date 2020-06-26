@@ -29,7 +29,8 @@ router.post('/login', [
         req.validate();
         const userLogin = await onLogin(req.body);
         req.session.userLogin = userLogin;//สร้าง session login ของ user
-        res.json(userLogin)
+        res.json({message:req.session.userLogin})
+        //res.json(userLogin)
     }
     catch (ex) {
         res.error(ex);

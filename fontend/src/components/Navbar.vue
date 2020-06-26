@@ -20,7 +20,7 @@
           </ul>
           <div class="form-inline my-2 my-lg-0">
             <a  type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</a>
-            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
+            <button   class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
         </div>

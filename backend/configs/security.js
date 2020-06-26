@@ -9,13 +9,13 @@ const security = {
         return passwordHash.verify(password, password_hash);
     },
     authenticated(req, res, next) {
-        req.session.userLogin = {
+       /* req.session.userLogin = {
             "iduser_login": 1,
             "username": "taotest",
             "fname": "รัชวิทย์",
             "lname": "P",
             "status": "admin"
-        }
+        }*/
         try {
             if (req.session.userLogin) { return next(); }
             throw new Error('Unauthorized');

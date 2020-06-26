@@ -36,7 +36,9 @@ server.use(require('./configs/middleware'));
 
 //เรียกใช้งาน routes
 server.use('/api',routes);
+
 server.get('*', (req, res) => {
     res.end(`<h1>session is ${req.session.item}</h1>`);
 })
+
 server.listen(PORT, () => console.log(`sever started port: ${PORT} . `));
