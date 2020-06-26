@@ -8,16 +8,19 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" >หน้าแรก</a>
+            <li class="nav-item">
+              <router-link :to="'/'" class="nav-link">หน้าแรก</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" >เกี่ยวกับเรา</a>
+               <router-link :to="'about'" class="nav-link">เกี่ยวกับ</router-link>
+            </li>
+               <li class="nav-item">
+               <router-link :to="'/news'" class="nav-link">ประชาสัมพันธ์</router-link>
             </li>
           </ul>
           <div class="form-inline my-2 my-lg-0">
-            <button v-if="this.$store.state.user.fname" type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</button>
-            <button v-if="!this.$store.state.user.fname" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
+            <a  type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</a>
+            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
         </div>
@@ -35,15 +38,23 @@
             </div>
             <div class="modal-body">
 
-              <form>
+              <form  @submit.prevent="onSubmit()">
                   <div class="form-group">
                     <label for="exampleInputEmail1">ชื่อผู้ใช้งาน</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                 
+                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username"
+                      v-validate="'required'"
+                      name="username"
+                      v-model.trim="form.username"
+                      :class="{'is-invalid':errors.has('username')}"
+                      aria-describedby="emailHelp">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">รหัสผ่าน</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1">
+                    <input type="password" class="form-control"  placeholder="password" 
+                      name="password"
+                      v-model.trim="form.password"
+                      :class="{'is-invalid':errors.has('password')}" 
+                      id="exampleInputPassword1">
                   </div>
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </form>
@@ -65,7 +76,30 @@ import axios from 'axios';
 
 export default {
   name:"navbar",
+  data() {
+    return {
+      form: {
+        username: "",
+        password: ""
+      },
+      errorMessage: ""
+    };
+  },
   methods:{
+    onSubmit() {
+      this.$validator.validateAll().then(valid => {
+        if (!valid) return;
+        axios
+          .post("api/account/login", this.form)
+          .then(response => {
+             //console.log(response.data); 
+             //this.$router.push("/");
+          }) 
+          .catch(err => {
+            this.errorMessage = err.response.data.message;
+          });
+      });
+    },
     onLogout(){
       axios.post('api/account/logout')
       .then(response =>{ 
@@ -86,5 +120,10 @@ export default {
     border: 1px solid;
     padding: 10px;
     box-shadow: 0px 5px #888888;
+  }
+  .nav-link.router-link-exact-active.router-link-active{
+    color: black;
+    font-size: 16px;
+    font:bold;
   }
 </style>
