@@ -16,8 +16,9 @@
             </li>
           </ul>
           <div class="form-inline my-2 my-lg-0">
-            <button  class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
-             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
+            <button v-if="this.$store.state.user.fname" type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</button>
+            <button v-if="!this.$store.state.user.fname" class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
+            <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
         </div>
       </div>
@@ -50,7 +51,6 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">ปิด</button>
-              <button type="button" class="btn btn-warning">สมัครสมาชิก</button>
             </div>
           </div>
         </div>
@@ -72,7 +72,10 @@ export default {
         console.log(response)
         })
         .catch(error => alert(error.response.data.message)
-    )}
+    )},
+    ongoToRegister(){
+       this.$router.push('/register')
+    }
   }
 }
 </script>

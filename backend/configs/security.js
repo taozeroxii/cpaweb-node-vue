@@ -8,10 +8,9 @@ const security = {
     password_valify(password, password_hash) {
         return passwordHash.verify(password, password_hash);
     },
-    
     authenticated(req, res, next) {
         req.session.userLogin = {
-            "u_id": 1,
+            "iduser_login": 1,
             "username": "taotest",
             "fname": "รัชวิทย์",
             "lname": "P",
@@ -20,7 +19,6 @@ const security = {
         try {
             if (req.session.userLogin) { return next(); }
             throw new Error('Unauthorized');
-
         }
         catch (ex) {
             res.error(ex, 401);

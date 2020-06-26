@@ -1,8 +1,8 @@
 <template>
   <div class="register">
-    <div class="card">
-      <div
-        class="card-header bg-primary text-light text-center"
+    <Navbar/>
+    <div class="card mt-5">
+      <div class="card-header bg-primary text-light text-center"
       >สมัครใช้งาน Admin status : default user</div>
       <div class="card-body">
         <form @submit.prevent="onSubmit()">
@@ -85,7 +85,11 @@
 
 <script>
 import axios from "axios";
+import Navbar from "../components/Navbar";
 export default {
+   components: {
+    Navbar
+  },
   data() {
     return {
       form: {
@@ -120,7 +124,8 @@ export default {
         fname: "",
         lname: "",
         username: "",
-        password: ""
+        password: "",
+        confirmpassword: ""
       };
     }
   }
