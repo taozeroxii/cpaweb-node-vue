@@ -30,7 +30,7 @@ router.post('/login', [
         const userLogin = await onLogin(req.body);
         req.session.userLogin = userLogin;//สร้าง session login ของ user
         res.json({message:req.session.userLogin})
-        //res.json(userLogin)
+        res.json(userLogin)
     }
     catch (ex) {
         res.error(ex);
@@ -40,7 +40,10 @@ router.post('/login', [
 // ตรวจสอบ userlogin
 router.post('/getUserLogin',authenticated, (req, res) => {
     try {
-        return res.json(req.session.userLogin);
+        if(req.session.userLogin){
+            return res.json(req.session.userLogin);
+        }
+        throw new Error('Unauthorize.')
     }
     catch (ex) {
         res.error(ex, 401);

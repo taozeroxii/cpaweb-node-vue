@@ -1,6 +1,6 @@
 <template>
   <div class="register">
-    <Navbar/>
+   <Navbar/>
     <div class="card mt-5">
       <div class="card-header bg-primary text-light text-center"
       >สมัครใช้งาน Admin status : default user</div>

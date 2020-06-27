@@ -18,8 +18,9 @@
                <router-link :to="'/news'" class="nav-link">ประชาสัมพันธ์</router-link>
             </li>
           </ul>
+         
           <div class="form-inline my-2 my-lg-0">
-            <a  type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</a>
+            <a v-if{{this.$store.state.user.fname}}  type="button" @click="ongoToRegister()" class="btn btn-warning">สมัครสมาชิก</a>
             <button   class="btn btn-outline-success my-2 my-sm-0" type="button"  data-toggle="modal" data-target="#exampleModal"><i class="fa fa-sign-in"></i> </button>
             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
@@ -38,22 +39,22 @@
             </div>
             <div class="modal-body">
 
-              <form  @submit.prevent="onSubmit()">
+              <form  @submit="onSubmit()">
                   <div class="form-group">
                     <label for="exampleInputEmail1">ชื่อผู้ใช้งาน</label>
                     <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Username"
                       v-validate="'required'"
-                      name="username"
+                      name="loginusername"
                       v-model.trim="form.username"
-                      :class="{'is-invalid':errors.has('username')}"
+                      :class="{'is-invalid':errors.has('loginusername')}"
                       aria-describedby="emailHelp">
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1">รหัสผ่าน</label>
-                    <input type="password" class="form-control"  placeholder="password" 
-                      name="password"
+                    <input type="password" class="form-control"  placeholder="loginpassword" 
+                      name="loginpassword"
                       v-model.trim="form.password"
-                      :class="{'is-invalid':errors.has('password')}" 
+                      :class="{'is-invalid':errors.has('loginpassword')}" 
                       id="exampleInputPassword1">
                   </div>
                   <button type="submit" class="btn btn-primary btn-block">Submit</button>
@@ -79,8 +80,8 @@ export default {
   data() {
     return {
       form: {
-        username: "",
-        password: ""
+        loginusername: "",
+        loginpassword: ""
       },
       errorMessage: ""
     };
@@ -92,8 +93,8 @@ export default {
         axios
           .post("api/account/login", this.form)
           .then(response => {
-             //console.log(response.data); 
-             //this.$router.push("/");
+             console.log(response.data); 
+            // this.$router.push("/");
           }) 
           .catch(err => {
             this.errorMessage = err.response.data.message;
