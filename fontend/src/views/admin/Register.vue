@@ -85,7 +85,7 @@
 
 <script>
 import axios from "axios";
-import Navbar from "../components/Navbar";
+import Navbar from "../../components/admincomponents/Navbar";
 export default {
    components: {
     Navbar

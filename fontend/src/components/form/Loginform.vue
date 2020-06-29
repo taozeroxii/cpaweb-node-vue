@@ -89,7 +89,9 @@ export default {
         axios
           .post("api/account/login", this.form)
           .then(response => {
-            console.log(response.data);
+            //console.log(response.data);
+            this.alertify.success("เข้าสู่ระบบสำเร็จ")
+            this.$router.push('/admin')
             this.jquery("#loginform").modal("hide");
           })
           .catch(err => {

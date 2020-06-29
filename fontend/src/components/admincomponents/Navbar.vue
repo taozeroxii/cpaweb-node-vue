@@ -1,7 +1,7 @@
 <template>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <div class="container">
-        <a class="navbar-brand" >CPA</a>
+        <a class="navbar-brand" >Admin/cpa</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -9,37 +9,36 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <router-link :to="'/'" class="nav-link">หน้าแรก</router-link>
+              <router-link :to="'/admin/'" class="nav-link">หน้าแรก</router-link>
             </li>
             <li class="nav-item">
-               <router-link :to="'about'" class="nav-link">เกี่ยวกับ</router-link>
+               <router-link :to="'/admin/editpage'" class="nav-link">แก้ไขหน้าเพจ</router-link>
             </li>
-               <li class="nav-item">
-               <router-link :to="'/news'" class="nav-link">ประชาสัมพันธ์</router-link>
+            <li class="nav-item">
+               <router-link :to="'/admin/editnews'" class="nav-link">เพิ่ม/แก้ไขประกาศ</router-link>
+            </li>
+             <li class="nav-item">
+               <router-link :to="'/admin/register'" class="nav-link">เพิ่มผู้ใช้งาน</router-link>
             </li>
           </ul>
          
           <div class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button" @click="onClickLogin()"><i class="fa fa-sign-in"></i> </button>
             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
         </div>
       </div>
 
-    <Loginform :login="this.clickLogin"  @onClose="clickLogin = null"/>
+
 
     </nav>
 </template>
 
 <script>
 import axios from 'axios';
-import Loginform from "../components/form/Loginform";
+
 
 export default {
   name:"navbar",
-  components:{
-    Loginform
-  },
   data(){
     return{
        clickLogin:null
@@ -53,13 +52,10 @@ export default {
       .then(response =>{ 
         //console.log(response)
         this.$store.commit('set_user',null);
+        this.$router.push('/')
         })
         .catch(error => this.alertify.error(error.response.data.message)
-    )},
-    onClickLogin(){
-      this.clickLogin ='click'
-      //console.log( this.clickLogin)
-    }
+    )}
   }
 }
 </script>

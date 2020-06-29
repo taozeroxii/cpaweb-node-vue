@@ -43,6 +43,9 @@ export default {
   name: "home",
   components: {
     Navbar
+  },
+  created(){
+    console.log(this.$store.state.user)
   }
 };
 </script>
