@@ -14,15 +14,35 @@
             <li class="nav-item">
                <router-link :to="'about'" class="nav-link">เกี่ยวกับ</router-link>
             </li>
-               <li class="nav-item">
+            <li class="nav-item">
                <router-link :to="'/news'" class="nav-link">ประชาสัมพันธ์</router-link>
+            </li>
+            <li class="nav-item">
+               <router-link :to="'/complain'" class="nav-link">แนะนำร้องเรียนชม</router-link>
+            </li>
+
+
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fa fa-wrench"></i> Setting
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <router-link :to="'/register'" class="nav-link"><a class="dropdown-item" > เพิ่มข้อมูลสมาชิก</a></router-link>
+                <a class="dropdown-item" >แก้ไขภาพหน้าแรก</a>
+                <a class="dropdown-item" >เพิ่ม/แก้ไขประชาสัมพันธ์</a>
+                <a class="dropdown-item" >เพิ่มประกาศราคา</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" >Something else here</a>
+              </div>
             </li>
           </ul>
          
           <div class="form-inline my-2 my-lg-0">
+
             <button class="btn btn-outline-success my-2 my-sm-0" type="button" @click="onClickLogin()"><i class="fa fa-sign-in"></i> </button>
             <button @click="onLogout()" class="btn btn-outline-secondary my-2 my-sm-0" type="button" ><i class="fa fa-sign-out"></i> </button>
           </div>
+          
         </div>
       </div>
 
@@ -49,7 +69,7 @@ export default {
   
   methods:{
     onLogout(){
-      axios.post('api/account/logout')
+      axios.post('/api/account/logout')
       .then(response =>{ 
         //console.log(response)
         this.$store.commit('set_user',null);

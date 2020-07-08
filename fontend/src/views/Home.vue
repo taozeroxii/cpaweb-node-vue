@@ -38,14 +38,14 @@
 </template>
 
 <script>
-import Navbar from "../components/Navbar";
+import Navbar from "@/components/Navbar";
 export default {
   name: "home",
   components: {
     Navbar
   },
   created(){
-    console.log(this.$store.state.user)
+    //console.log(this.$store.state.user)
   }
 };
 </script>

@@ -87,7 +87,7 @@ export default {
       this.$validator.validateAll().then(valid => {
         if (!valid) return;
         axios
-          .post("api/account/login", this.form)
+          .post("/api/account/login", this.form)
           .then(response => {
             //console.log(response.data);
             this.alertify.success("เข้าสู่ระบบสำเร็จ")

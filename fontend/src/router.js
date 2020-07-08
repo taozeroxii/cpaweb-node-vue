@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import PageNotFound from './views/PageNotFound'
 
 Vue.use(Router)
 
@@ -13,7 +14,9 @@ const router = new Router({
 
 
     { path: '/admin/', name: 'adminhome' , component: () => import('./views/admin/adminhome.vue') , meta: { auth: true }},
-    { path: '/admin/register', name: 'adminregister' , component: () => import('./views/admin/Register.vue') , meta: { auth: true }}
+    { path: '/register', name: 'adminregister' , component: () => import('./views/admin/Register.vue') , meta: { auth: true }}
+   ,{ path: "*", component: PageNotFound }
+    //,{ path: '/register', name: 'register' , component: () => import('./views/Register.vue') }
   ]
 })
 
@@ -26,6 +29,7 @@ router.beforeEach((to, from, next) => {
   router.app.$store.dispatch('get_user_login')
     .then(() => {next(); })
     .catch(() => next({ name: 'home' }))
+
 });
 
 
