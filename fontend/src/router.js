@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import PageNotFound from './views/PageNotFound'
 import tel from './views/pdf/tel'
+import news from './views/news'
 
 Vue.use(Router)
 
@@ -12,9 +13,10 @@ const router = new Router({
   routes: [
     { path: '/',  name: 'home', component: Home },
     { path: '/tel.pdf',  name: 'tel', component: tel },
+    { path: '/news',  name: 'news', component: news },
     { path: '/about', name: 'about',  component: () => import('./views/About.vue') },
 
-    { path: '/register', name: 'adminregister' , component: () => import('./views/admin/Register.vue') , meta: { auth: true }}
+    { path: '/register', name: 'register' , component: () => import('./views/admin/Register.vue') , meta: { auth: true }}
    ,{ path: "*", component: PageNotFound }
     //,{ path: '/register', name: 'register' , component: () => import('./views/Register.vue') }
   ]

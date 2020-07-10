@@ -4,8 +4,8 @@
     <div class="container-fulid">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-12 text-center">
-            <img src="" alt="">This show'an image
+          <div class="col-12 text-center ">
+            <img src="../assets/ceo63.jpg" alt="" style="border-radius:30px">
             <h4 >{{ceoName}}</h4>
             <h4 class="mb-5">{{position}}</h4>
 
