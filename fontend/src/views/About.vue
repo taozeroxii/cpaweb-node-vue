@@ -4,8 +4,12 @@
     <div class="container-fulid">
       <div class="container mt-5">
         <div class="row">
-          <div class="col-12">
-              <center><h2>เกี่ยวกับเรา</h2></center> 
+          <div class="col-12 text-center">
+            <img src="" alt="">This show'an image
+            <h4 >{{ceoName}}</h4>
+            <h4 class="mb-5">{{position}}</h4>
+
+            <center><h2>เกี่ยวกับเรา</h2></center> 
           </div>
         </div>
         <div class="row text-center " >
@@ -34,7 +38,9 @@
             ตำบลท่างาม จังหวัดปราจีนบุรี 25000<br/>
             โทรศัพท์ : 037 211 088<br/>
             แฟกซ์ : 037 211 243<br/>
-           <br/> เบอร์โทรศัพท์ภายใน : คลิกค้นหา           PDF File.
+            เบอร์ติดต่อภายใน    <a href="./tel.pdf" target="_blank">PDF Click</a>
+
+           <br/> 
           </div>
         </div>
       </div>
@@ -44,9 +50,19 @@
 
 <script>
 import Navbar from "@/components/Navbar"
+
 export default {
     components: {
     Navbar
+  },
+  data(){
+    return{
+      ceoName:"แพทย์หญิงโศรยา ธรรมรักษ์",
+      position:"ผู้อำนวยการโรงพยาบาลเจ้าพระยาอภัยภูเบศร"
+    }
+  },
+  methods:{
+    
   }
 }
 </script>

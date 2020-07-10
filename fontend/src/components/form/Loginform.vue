@@ -91,7 +91,6 @@ export default {
           .then(response => {
             //console.log(response.data);
             this.alertify.success("เข้าสู่ระบบสำเร็จ")
-            this.$router.push('/admin')
             this.jquery("#loginform").modal("hide");
           })
           .catch(err => {

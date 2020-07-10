@@ -73,6 +73,7 @@ export default {
       .then(response =>{ 
         //console.log(response)
         this.$store.commit('set_user',null);
+        this.alertify.warning('ออกจากระบบเรียบร้อยแล้ว')
         })
         .catch(error => this.alertify.error(error.response.data.message)
     )},
